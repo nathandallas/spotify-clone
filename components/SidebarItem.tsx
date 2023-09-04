@@ -23,7 +23,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
 					`
                     flex flex-row h-auto items-center w-full gap-x-4
                     text-md font-medium cursor-pointer hover:text-white
-                    transition text-neutral-400 py-1
+                    transition text-gray-400 py-1
                     `,
 					active && 'text-white'
 				)}

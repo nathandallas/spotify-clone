@@ -23,15 +23,15 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
 		<>
 			<div
 				className={twMerge(`
-            h-fit bg-gradient-to-b from-emerald-800 p-6
-            `)}
+            		h-fit bg-gradient-to-b from-indigo-950 p-6
+            		`)}
 			>
 				<div className='w-full mb-4 flex items-center justify-between'>
 					<div className='hidden md:flex gap-x-2 items-center'>
 						<button
 							onClick={() => router.back()}
 							className='
-                            rounded-full bg-black flex items-center
+                            rounded-full bg-slate-950 flex items-center
                             justify-center hover:opacity-75 transition
                         '
 						>
@@ -40,7 +40,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
 						<button
 							onClick={() => router.forward()}
 							className='
-                            rounded-full bg-black flex items-center
+                            rounded-full bg-slate-950 flex items-center
                             justify-center hover:opacity-75 transition
                         '
 						>
@@ -68,17 +68,17 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
 					<div className='flex justify-between items-center gap-x-4'>
 						<>
 							<div>
-								<Button className='bg-transparent text-neutral-300 font-medium'>
+								<Button className='bg-transparent text-gray-400 font-medium'>
 									Sign Up
 								</Button>
 							</div>
 							<div>
-								<Button className='bg-white px-6 py-2'>Log In</Button>
+								<Button className='bg-rose-500 px-6 py-2'>Log In</Button>
 							</div>
 						</>
 					</div>
 				</div>
-                {children}
+				{children}
 			</div>
 		</>
 	);
