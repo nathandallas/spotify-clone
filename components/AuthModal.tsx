@@ -7,6 +7,7 @@ import {
 import { useRouter } from 'next/navigation';
 import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
+import { useEffect } from 'react';
 
 import useAuthModal from '@/hooks/useAuthModal';
 
@@ -16,24 +17,33 @@ const AuthModal = () => {
 	const supabaseClient = useSupabaseClient();
 	const router = useRouter();
 	const { session } = useSessionContext();
-    const { onClose, isOpen } = useAuthModal();
+	const { onClose, isOpen } = useAuthModal();
 
-    const onChange = (open: boolean) => {
-        if (!open) {
-            onClose();
-        }
-    }
+	// Closes once logged in/signed up
+	useEffect(() => {
+		if (session) {
+			router.refresh();
+			onClose();
+		}
+	}, [session, router, onClose]);
+
+	// Close
+	const onChange = (open: boolean) => {
+		if (!open) {
+			onClose();
+		}
+	};
 
 	return (
 		<Modal
 			title='Welcome Back!'
 			description='Log in to your account.'
-			isOpen
-			onChange={() => {}}
+			isOpen={isOpen}
+			onChange={onChange}
 		>
 			<Auth
 				theme='dark'
-                providers={["github", "google", "facebook"]}
+				providers={['github', 'google', 'facebook']}
 				supabaseClient={supabaseClient}
 				appearance={{
 					theme: ThemeSupa,
@@ -53,7 +63,7 @@ const AuthModal = () => {
 								defaultButtonBackground: '#334155',
 								defaultButtonBackgroundHover: '#fb7185',
 								defaultButtonBorder: '#0f172a',
-								dividerBackground: '#0f172a',   
+								dividerBackground: '#0f172a',
 								inputBackground: '#020617',
 								inputBorder: '#0f172a',
 								inputBorderHover: '#64748b',
@@ -61,7 +71,7 @@ const AuthModal = () => {
 								inputPlaceholder: '#64748b',
 								inputLabelText: '#e2e8f0',
 								anchorTextColor: '#e2e8f0',
-								anchorTextHoverColor: '#64748b'
+								anchorTextHoverColor: '#64748b',
 							},
 						},
 					},
